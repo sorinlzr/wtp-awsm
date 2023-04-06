@@ -1,4 +1,5 @@
-##  WTP - Team project for Web Technologies
+#  MindShare
+## Team project for Web Technologies at FH Campus Wien
 <br>
 
 ### Install dependencies
