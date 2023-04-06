@@ -3,7 +3,7 @@
 
 ### Install dependencies
 
-Make sure that you have `node` and `npm` installed. If you do, then run 
+Make sure that you have `node` and `npm` installed. If you do, then navigate to the `/backend` folder and run 
 ```
 npm install
 ```
