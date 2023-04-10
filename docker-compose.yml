@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:4.4.20-rc0
+    restart: always
+    volumes:
+      - ./db:/data/db
+    networks:
+      - express-mongo
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+        
+  mongo-express:
+    image: mongo-express:1.0.0-alpha
+    restart: always
+    depends_on:
+      - mongo
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=${MONGO_PORT}
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER}
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
+    ports:
+      - "${MONGOEXPRESS_PORT}:8081"
+    networks:
+      - express-mongo
+networks:
+  express-mongo:
