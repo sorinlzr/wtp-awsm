@@ -1,10 +1,13 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' })
+
 import express from 'express';
 import { readFile } from 'fs';
 import { join } from 'path';
 import { connectToDatabase } from './dbconnection.js';
 
 const app = express();
-const port = 5000;
+const port = `${process.env.APP_BACKEND_PORT}`;
 
 app.get('/', function (req, res) {
 
