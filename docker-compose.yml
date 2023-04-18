@@ -9,7 +9,7 @@ services:
     networks:
       - express-mongo
     ports:
-      - ${MONGO_PORT}:${MONGO_PORT}
+      - ${MONGO_PORT}:27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
@@ -21,7 +21,7 @@ services:
       - mongo
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongo
-      - ME_CONFIG_MONGODB_PORT=${MONGO_PORT}
+      - ME_CONFIG_MONGODB_PORT=27017
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
       - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
       - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER}
@@ -32,5 +32,23 @@ services:
       - "${MONGOEXPRESS_PORT}:8081"
     networks:
       - express-mongo
+
+  libre-translate:
+    image: libretranslate/libretranslate:v1.3.10
+    restart: always
+    environment:
+      LT_PORT: ${LIBRETRANSLATE_PORT}
+      LT_REQ_LIMIT: 100
+      LT_FRONTEND_LANGUAGE_SOURCE: de                                                                                                                                                                                                                                                                                
+      LT_FRONTEND_LANGUAGE_TARGET: en  
+      LT_LOAD_ONLY: ${LIBRETRANSLATE_LANGUAGES}
+    ports:
+      - ${LIBRETRANSLATE_PORT}:${LIBRETRANSLATE_PORT}
+    volumes:
+      - .lt-local:/home/libretranslate/.local
+    networks:
+      - external-api-libre
+
 networks:
   express-mongo:
+  external-api-libre:
