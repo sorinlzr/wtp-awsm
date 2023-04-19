@@ -11,7 +11,7 @@ const port = `${process.env.APP_BACKEND_PORT}`;
 
 app.get('/', function (req, res) {
 
-    const filePath = join(__dirname, 'json/greeting.json');
+    const filePath = join(process.cwd(), 'src/json/greeting.json');
     readFile(filePath, 'utf8', (err, data) => {
         if (err) {
             console.error(err);
