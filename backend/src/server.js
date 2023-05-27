@@ -2,9 +2,10 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' })
 
 import express from 'express';
+import mongoose from 'mongoose';
 import { readFile } from 'fs';
 import { join } from 'path';
-import { connectToDatabase } from './dbconnection.js';
+import { connectToDatabase } from './config/dbconnection.js';
 
 const app = express();
 const port = `${process.env.APP_BACKEND_PORT}`;
@@ -27,4 +28,20 @@ app.listen(port, () => {
     console.log(`Now listening on port ${port}`);
 });
 
-connectToDatabase();
+async function main() {
+    connectToDatabase();
+
+    const kittySchema = new mongoose.Schema({
+        name: String
+    });
+
+    const Kitten = mongoose.model('Kitten', kittySchema);
+    
+    const fluffy = new Kitten({ name: 'fluffy' });
+    await fluffy.save();
+
+    const kittens = await Kitten.find();
+    console.log(kittens);
+}
+
+main();
