@@ -4,7 +4,7 @@ dotenv.config({ path: '../.env' })
 import express from 'express';
 import { readFile } from 'fs';
 import { join } from 'path';
-import { connectToDatabase } from './dbconnection.js';
+import { connectToDatabase } from './config/dbconnection.js';
 
 const app = express();
 const port = `${process.env.APP_BACKEND_PORT}`;
@@ -27,4 +27,8 @@ app.listen(port, () => {
     console.log(`Now listening on port ${port}`);
 });
 
-connectToDatabase();
+async function main() {
+    connectToDatabase();
+}
+
+main();
