@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import postRouter from './routes/postRoute.js';
+import userRouter from './routes/userRoute.js';
 import { readFile } from 'fs';
 import { join } from 'path';
 import { connectToDatabase } from './config/dbconnection.js';
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.use("/api/posts", postRouter);
+app.use("/api/users", userRouter);
 
 app.get('/', function (req, res) {
     const filePath = join(process.cwd(), 'src/json/greeting.json');
