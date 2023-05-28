@@ -1,16 +1,23 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' })
-
 import express from 'express';
+import bodyParser from 'body-parser';
+import postRouter from './routes/postRoute.js';
 import { readFile } from 'fs';
 import { join } from 'path';
 import { connectToDatabase } from './config/dbconnection.js';
 
-const app = express();
+dotenv.config({ path: '../.env' })
 const port = `${process.env.APP_BACKEND_PORT}`;
 
-app.get('/', function (req, res) {
+const app = express();
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+app.use("/api/posts", postRouter);
+
+app.get('/', function (req, res) {
     const filePath = join(process.cwd(), 'src/json/greeting.json');
     readFile(filePath, 'utf8', (err, data) => {
         if (err) {
@@ -20,7 +27,6 @@ app.get('/', function (req, res) {
             res.send(JSON.parse(data));
         }
     });
-
 })
 
 app.listen(port, () => {
