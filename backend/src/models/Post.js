@@ -2,10 +2,6 @@ import { mongoose } from 'mongoose';
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-    // user: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "user"
-    // },
     text: {
         type: String,
         required: true
@@ -20,10 +16,6 @@ const postSchema = new Schema({
     ],
     comments: [
         {
-            // user: {
-            //     type: Schema.Types.ObjectId,
-            //     ref: "user"
-            // },
             text: {
                 type: String,
                 required: true
