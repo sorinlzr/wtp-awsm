@@ -23,6 +23,7 @@ At the moment, there are three services:
 Before starting the containers you need to add the necessary environment variables in the `.env` file:
 ```
 APP_BACKEND_PORT            - the backend application server port. Not needed for docker, but needs to be set nonetheless for the application to run
+LIBRETRANSLATE_HOST         - the host where libretranslate is running, locally should be set to 'localhost'
 LIBRETRANSLATE_LANGUAGES    - the languages to load. By default loads only en, es, de, it, fr
 LIBRETRANSLATE_PORT         - the port where the libre-translate service can be accessed
 MONGO_ROOT_USER             - the db user
@@ -58,4 +59,8 @@ which will start the server using `nodemon`.
 
 It monitors your project directory and automatically restarts your node application when it detects any changes in the code.
 
-When the application starts, it will automatically create a database for the application, as well as a collection, if they don't already exist.
+When the application starts, it will automatically create a database for the application, as well as a collection, if they don't already exist.<br>
+<br>
+### Swagger API
+
+You can access the Swagger API at the `/api-docs` endpoint
