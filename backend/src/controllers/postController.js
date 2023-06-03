@@ -1,27 +1,36 @@
 import Post from "../models/Post.js";
+import User from "../models/User.js";
+import asyncHandler from "express-async-handler"
 
 const postController = {};
 
-const createPost = (req, res) => {
-    Post.create(req.body)
-        .then(post => {
-            res.status(201).send({ data: post });
-        })
-        .catch(err => {
-            console.log("Some bullshit error happened: " + err);
-            res.status(500).send({ error: "Internal server error" });
-        });
-};
+const createPost = asyncHandler(async (req, res) => {
+    // Create The Post
+    // TODO uncomment the following line after implementing session management to retrieve the user data
+    // req.body.user = req.user._id;
+    const post = await Post.create(req.body);
 
-const allPosts = (req, res) => {
-    Post.find()
-        .then(posts => {
-            res.status(200).json({ size: posts.length, data: posts });
-        })
-        .catch(err => {
-            res.status(500).send({ error: "Internal server error" });
-        });
-};
+    // Associate user to post
+    await User.findByIdAndUpdate(
+        req.body.user,
+        {
+            $addToSet: { posts: post._id },
+        },
+        { new: true }
+    );
+
+    res.status(201).send({ data: post });
+});
+
+const allPosts = asyncHandler(async (req, res) => {
+    const post = await Post.find().populate("author");
+
+    const posts = post.filter((item) => {
+        return !item.author.blocked.includes(req.user._id);
+    });
+
+    res.status(200).json({ size: posts.length, data: posts });
+});
 
 postController.createPost = createPost;
 postController.allPosts = allPosts;
