@@ -2,3 +2,5 @@ node_modules
 db/
 .lt-local
 .env
+
+.idea
