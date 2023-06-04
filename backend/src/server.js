@@ -1,11 +1,10 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import path from 'path';
 import bodyParser from 'body-parser';
 import postRouter from './routes/postRoute.js';
 import userRouter from './routes/userRoute.js';
 import translationRouter from './routes/translationRouter.js';
-import { readFile } from 'fs';
-import { join } from 'path';
 import { connectToDatabase } from './config/dbconnection.js';
 import setupSwagger from './config/swagger.js';
 
@@ -17,22 +16,11 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use(express.static(path.join(process.cwd(), "../frontend/src")));
 
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/translate", translationRouter);
-
-app.get('/', function (req, res) {
-    const filePath = join(process.cwd(), 'src/json/greeting.json');
-    readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Internal Server Error');
-        } else {
-            res.send(JSON.parse(data));
-        }
-    });
-})
 
 setupSwagger(app);
 
