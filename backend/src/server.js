@@ -4,8 +4,10 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import postRouter from './routes/postRoute.js';
 import userRouter from './routes/userRoute.js';
+import { authRouter } from './routes/authRouter.js';
 import translationRouter from './routes/translationRouter.js';
 import { connectToDatabase } from './config/dbconnection.js';
+import passport from './config/passport.js';
 import setupSwagger from './config/swagger.js';
 
 dotenv.config({ path: '../.env' })
@@ -18,6 +20,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(process.cwd(), "../frontend/src")));
 
+// Passport middleware
+app.use(passport.initialize());
+
+app.use("/api/login", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/translate", translationRouter);
