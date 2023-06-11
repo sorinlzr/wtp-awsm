@@ -1,0 +1,147 @@
+html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#041726, #20132c);
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  /* background: rgba(4,23,38); */
+  border-radius: 10px;
+}
+.login-box img {
+  width: 35%;
+  display: block;
+  margin: 0 auto;
+}
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px;
+  color: #f403b8;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  margin-left: 25px;
+  letter-spacing: 4px
+}
+
+.login-box form button {
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  padding: 10px 30px;
+  color: #f403b8;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  margin-left: 25px;
+  letter-spacing: 4px
+}
+
+.login-box a:hover, .login-box button:hover {
+  background: #f403b8;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #f403b8,
+              0 0 25px #f403b8;
+}
+
+.login-box a span, .login-box button {
+  position: absolute;
+  display: block;
+}
+
+.login-box a span:nth-child(3), .login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #f403b8);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+.error-message {
+  display: none; /* Hide the error message by default */
+  text-align: center;
+  color: red; /* Customize the text color for the error message */
+}
+
+.success-message {
+  display: none; /* Hide the success message by default */
+  text-align: center; 
+  color: #155724; /* Text color for the success message */
+  background-color: #d4edda; /* Background color for the success message */
+  border: 1px solid #c3e6cb; /* Border style for the success message */
+  padding: 10px; /* Padding around the success message */
+  margin-bottom: 10px; /* Bottom margin for spacing */
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
