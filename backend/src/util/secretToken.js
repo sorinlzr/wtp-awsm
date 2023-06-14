@@ -9,7 +9,7 @@ export const createSecretToken = (payload) => {
         payload,
         process.env.JWT_SECRET,
         {
-            expiresIn: 24 * 60 * 60, // 1 day in seconds
+            expiresIn: process.env.JWT_MAX_AGE
         }
     );
 }

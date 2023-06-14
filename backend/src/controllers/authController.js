@@ -46,6 +46,7 @@ export const login = asyncHandler(async (req, res, next) => {
             .cookie("token", token, {
                 withCredentials: true,
                 httpOnly: false,
+                maxAge: process.env.JWT_MAX_AGE * 1000
             })
             .json({ data: user });
 
