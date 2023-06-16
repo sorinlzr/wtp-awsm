@@ -1,8 +1,7 @@
 import User from "../models/User.js";
-import Post from "../models/Post.js";
 import bcrypt from "bcrypt"
 import asyncHandler from "express-async-handler"
-import { createOne, updateOne, deleteOne, getOne, getAll } from "./handlersFactory.js"
+import { createOne, deleteOne, getOne, getAll } from "./handlersFactory.js"
 
 const userController = {};
 // @desc Create a User

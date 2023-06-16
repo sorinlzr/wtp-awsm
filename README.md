@@ -26,6 +26,8 @@ APP_BACKEND_PORT            - the backend application server port. Not needed fo
 LIBRETRANSLATE_HOST         - the host where libretranslate is running, locally should be set to 'localhost'
 LIBRETRANSLATE_LANGUAGES    - the languages to load. By default loads only en, es, de, it, fr
 LIBRETRANSLATE_PORT         - the port where the libre-translate service can be accessed
+JWT_SECRET                  - the secret used to generate the JWT token
+JWT_MAX_AGE                 - the expiration time of the token. Also used for the cookie maxAge
 MONGO_ROOT_USER             - the db user
 MONGO_ROOT_PASSWORD         - the db password
 MONGO_HOST                  - the host where the db is running, locally should be set to 'localhost'

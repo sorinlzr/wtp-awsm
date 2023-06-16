@@ -1,5 +1,7 @@
-node_modules
+certs
 db/
+node_modules
+.idea
 .lt-local
 .env
 
