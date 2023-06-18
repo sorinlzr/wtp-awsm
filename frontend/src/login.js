@@ -43,7 +43,7 @@ function loginUser(event) {
 
     console.log('sending post login');
     // Send POST request to the backend
-    fetch('/api/login/', {
+    fetch('/api/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
