@@ -10,6 +10,7 @@ import { connectToDatabase } from './config/dbconnection.js';
 import passport from './config/passport.js';
 import setupSwagger from './config/swagger.js';
 
+
 dotenv.config({ path: '../.env' })
 const port = `${process.env.APP_BACKEND_PORT}`;
 
@@ -23,7 +24,7 @@ app.use(express.static(path.join(process.cwd(), "../frontend/src")));
 // Passport middleware
 app.use(passport.initialize());
 
-app.use("/api/login", authRouter);
+app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/translate", translationRouter);

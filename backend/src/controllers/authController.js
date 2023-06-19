@@ -56,3 +56,16 @@ export const login = asyncHandler(async (req, res, next) => {
         console.error(error);
     }
 });
+
+export const logout = asyncHandler(async (req, res, next) => {
+    try {
+      // Clear the token cookie
+      res.clearCookie('token');
+  
+      res.status(200).json({ message: 'Logged out successfully' });
+    } catch (error) {
+      console.log("Error during logout");
+      console.error(error);
+    }
+  });
+  

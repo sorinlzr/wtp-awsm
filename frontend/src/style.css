@@ -120,6 +120,15 @@ body {
   animation-delay: .5s
 }
 
+.logout-link {
+  display: inline-block;
+  position: absolute;
+  top: 280px;
+  right: 220px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .error-message {
   display: none; /* Hide the error message by default */
   text-align: center;

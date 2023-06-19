@@ -2,11 +2,9 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' });
 
 import express from 'express';
-import { login } from '../controllers/authController.js';
+import { login, logout } from '../controllers/authController.js';
 
 export const authRouter = express.Router();
 
-authRouter.post(
-    "/",
-    login
-);
+authRouter.post("/login", login);
+authRouter.post("/logout", logout);
