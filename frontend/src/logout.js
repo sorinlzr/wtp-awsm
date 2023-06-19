@@ -1,8 +1,8 @@
-// Add an event listener to the logout button or link
+// Add an event listener to the logout button or link.
 document.getElementById('logoutButton').addEventListener('click', logoutUser);
 
 function logoutUser() {
-  // Send a GET request to the logout endpoint
+  // Send a GET request to the logout endpoint.
   fetch('/api/auth/logout', {
     method: 'GET',
     headers: {
