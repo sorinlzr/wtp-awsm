@@ -9,7 +9,6 @@ import translationRouter from './routes/translationRouter.js';
 import { connectToDatabase } from './config/dbconnection.js';
 import passport from './config/passport.js';
 import setupSwagger from './config/swagger.js';
-import { login, logout } from './controllers/authController.js';
 
 
 dotenv.config({ path: '../.env' })
@@ -29,8 +28,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/translate", translationRouter);
-app.get('/api/auth/login', login);
-app.get('/api/auth/logout', logout);
 
 setupSwagger(app);
 
