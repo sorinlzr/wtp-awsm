@@ -6,6 +6,8 @@ import asyncHandler from "express-async-handler"
 import User from "../models/User.js";
 import { createSecretToken } from '../util/secretToken.js';
 
+import jwt from 'jsonwebtoken';
+
 export const login = asyncHandler(async (req, res, next) => {
     try {
         const username = req.body.username;
@@ -68,4 +70,27 @@ export const logout = asyncHandler(async (req, res, next) => {
       console.error(error);
     }
   });
-  
+
+// @desc Make sure the user is logged in the same own url
+export const isAuth = (req, res, next) => {
+    // Assuming you have authenticated the user successfully
+    // Create JWT payload
+    const payload = {
+        id: req.user.id,
+        name: req.user.name
+    };
+
+    // Sign the token
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_MAX_AGE
+    });
+
+    // Set the token as a cookie in the response
+    res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: process.env.JWT_MAX_AGE * 1000
+    });
+
+    next();
+};
+
