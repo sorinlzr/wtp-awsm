@@ -42,5 +42,8 @@ homeRouter.get(
         res.sendFile(path.join(process.cwd(), frontendSrc, '/userFeed.html'));
     }
 );
-
+homeRouter.get("*", (req, res) => {
+    res.status(404).sendFile(path.join(process.cwd(), frontendSrc, '/error.html'));
+  });
+  
 export default homeRouter;
