@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./style.css">
-  <script type="module" src="register.js"></script>
 </head>
 <body>
 <div class="login-box">
@@ -33,14 +32,15 @@
       <input type="password" name="" required="" id="password">
       <label>Password</label>
     </div>
-    <a href="login.html">
+    <button id="loginButton" onclick="handleLoginButtonClick()">
       Back 
-    </a>
-    <button href="#" onclick="registerUser(event)">
+    </button>
+    <button onclick="registerUser(event)">
       Register
     </button>
     <p id="errorMessage" class="error-message"></p> <!-- Added error message element -->
   </form>
 </div>
 </body>
+<script src="register.js"></script>
 </html>

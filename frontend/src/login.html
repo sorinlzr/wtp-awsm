@@ -4,6 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./style.css">
+  <script>
+    window.addEventListener('load', () => {
+    // Get the success message from the URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const successMessage = urlParams.get('success');
+
+    // Check if the success message should be displayed
+    const displaySuccess = sessionStorage.getItem('successMessage');
+    if (successMessage === 'registration_success' && displaySuccess) {
+        const successElement = document.getElementById('successMessage');
+        successElement.textContent = 'Registration successful! You can now log in'; // Customize the success message
+        successElement.style.display = 'block'; // Make the success message visible
+
+        // Set the flag to indicate that the success message has been displayed
+        sessionStorage.setItem('successMessage', false);
+        console.log("in the if of the script");
+        sessionStorage.removeItem('successMessage');
+    }
+    else {
+        // Hide the success message if it shouldn't be displayed
+        const successElement = document.getElementById('successMessage');
+        successElement.style.display = 'none';
+        console.log("in the else of the script");
+        sessionStorage.removeItem('successMessage');
+    }
+});
+  </script>
 </head>
 
 <body>
@@ -19,22 +46,22 @@
         <input type="password" name="password" id="password" required="">
         <label>Password</label>
       </div>
-      <button type="submit">
+      <button type="submit" >
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Login
       </button>
-      <a href="register.html">
+      <button id="registerButton" onclick="handleRegisterButtonClick()">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         or register
-
-      </a>
+      </button>
       <p id="successMessage" class="success-message"></p>
+      <p id="errorMessage" class="error-message"></p>
     </form>
   </div>
   <script src="login.js"></script>

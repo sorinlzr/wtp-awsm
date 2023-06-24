@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser'; // Import the cookie-parser middleware
+import homeRouter from './routes/homeRouter.js';
 import postRouter from './routes/postRoute.js';
 import userRouter from './routes/userRoute.js';
 import { authRouter } from './routes/authRouter.js';
@@ -9,6 +11,7 @@ import translationRouter from './routes/translationRouter.js';
 import { connectToDatabase } from './config/dbconnection.js';
 import passport from './config/passport.js';
 import setupSwagger from './config/swagger.js';
+import jwt from 'jsonwebtoken';
 
 
 dotenv.config({ path: '../.env' })
@@ -18,12 +21,14 @@ const app = express();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser()); // Use cookie-parser middleware
 
-app.use(express.static(path.join(process.cwd(), "../frontend/src")));
+app.use(express.static(path.join(process.cwd(), "../frontend/src/public")));
 
 // Passport middleware
 app.use(passport.initialize());
 
+app.use("/", homeRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
