@@ -14,6 +14,7 @@ function logoutUser() {
     .then(response => response.json())
     .then(data => {
       console.log('User logged out successfully:', data);
+      sessionStorage.clear()
       sessionStorage.setItem('logoutSuccessMessage', true);
       window.location.href = '/index.html';
     })

@@ -45,7 +45,7 @@ function registerUser(event) {
         .then(data => {
             console.log('User registered successfully:', data);
             sessionStorage.setItem('successMessage', true);
-            window.location.href = '/login.html?success=registration_success';
+            window.location.href = '/login?success=registration_success';
             // Handle the success response here, e.g., show a success message to the user
         })
         .catch(error => {
@@ -56,3 +56,15 @@ function registerUser(event) {
             sessionStorage.setItem('errorMessage', 'Registration failed. Please try again.');
         });
 }
+
+function handleLoginButtonClick() {
+    fetch('/login')
+      .then(function(response) {
+        if (response.ok) {
+          window.location.href = '/login';
+        }
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
+  }
