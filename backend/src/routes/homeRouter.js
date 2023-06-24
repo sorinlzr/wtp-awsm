@@ -35,4 +35,12 @@ homeRouter.get(
     }
 );
 
+homeRouter.get(
+    "/feed",
+    validateToken,
+    (req, res) => {
+        res.sendFile(path.join(process.cwd(), frontendSrc, '/userFeed.html'));
+    }
+);
+
 export default homeRouter;

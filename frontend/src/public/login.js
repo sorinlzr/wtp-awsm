@@ -40,7 +40,7 @@ function loginUser(event) {
             console.log('Userid: ', json.data.id);
             sessionStorage.setItem('loginSuccessMessage', true);
             sessionStorage.setItem('userId', json.data.id);
-            window.location.href = '/home?success=login_success';
+            window.location.href = '/feed?success=login_success';
             // Handle the success response here, e.g., show a success message to the user
         })
         .catch(error => {
