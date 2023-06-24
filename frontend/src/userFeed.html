@@ -16,6 +16,14 @@
 </svg>
     </div>
     <div class="logo">MINDSHARE</div>
+    <div class="account">
+      <span class="account-user">
+        <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="account-profile" alt="">
+      </span>
+      <span class="account-user">
+        username 
+      </span>
+    </div>
     <div class="side-wrapper">
       <div class="side-title">MENU</div>
       <div class="side-menu">
@@ -67,13 +75,16 @@
         </a>
       </div>
     </div>
+
+    <a href="" class="logout-wrapper">
+      <button class="logout-button">
+        logout
+      </button>
+    </a>
   </div>
   <div class="main">
     <div class="search-bar">
       <input type="text" placeholder="Search" />
-      <button class="right-side-button" @click="rightSide = !rightSide">
-         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      </button>
     </div>
     <div class="main-container">
 
@@ -94,16 +105,6 @@
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                 </svg>
                 Add circles manually
-              </a>
-              <a href="#" class="status-action">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <circle cx="256" cy="256" r="256" fill="#ffca28" />
-                  <g fill="#6d4c41">
-                    <path d="M399.68 208.32c-8.832 0-16-7.168-16-16 0-17.632-14.336-32-32-32s-32 14.368-32 32c0 8.832-7.168 16-16 16s-16-7.168-16-16c0-35.296 28.704-64 64-64s64 28.704 64 64c0 8.864-7.168 16-16 16zM207.68 208.32c-8.832 0-16-7.168-16-16 0-17.632-14.368-32-32-32s-32 14.368-32 32c0 8.832-7.168 16-16 16s-16-7.168-16-16c0-35.296 28.704-64 64-64s64 28.704 64 64c0 8.864-7.168 16-16 16z" />
-                  </g>
-                  <path d="M437.696 294.688c-3.04-4-7.744-6.368-12.736-6.368H86.4c-5.024 0-9.728 2.336-12.736 6.336-3.072 4.032-4.032 9.184-2.688 14.016C94.112 390.88 170.08 448.32 255.648 448.32s161.536-57.44 184.672-139.648c1.376-4.832.416-9.984-2.624-13.984z" fill="#fafafa" />
-                </svg>
-                Mood
               </a>
               <button class="status-share">Share</button>
             </div>
@@ -259,42 +260,7 @@
       </div>
     </div>
   </div>
-  <div class="right-side" :class="{ 'active': rightSide }">
-    <div class="account">
-      <button class="account-button">
-      </button>
-      <button class="account-button">
-        <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1" viewBox="0 0 24 24">
-          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
-        </svg>
-      </button>
-      <span class="account-user">FlamingoTingz
-        <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="account-profile" alt="">
-      </span>
-    </div>
 
-
-  <div class="side-wrapper stories">
-      <div class="side-title">Something .. idk</div>
-      <div class="user">
-        <div class="username">Lisandro Matos
-          <div class="album-date">12 hours ago</div>
-        </div>
-      </div>
-    
-    <div class="search-bar right-search">
-      <input type="text" placeholder="Search" />
-      <div class="search-bar-svgs">
-        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.34 469.34">
-          <path d="M456.84 76.17l-64-64.06c-16.13-16.13-44.18-16.17-60.37.04L45.77 301.67a10.73 10.73 0 00-2.7 4.59L.41 455.73a10.68 10.68 0 0013.19 13.2l149.33-42.7c1.73-.5 3.3-1.42 4.58-2.7l289.33-286.98c8.06-8.07 12.5-18.78 12.5-30.19s-4.44-22.12-12.5-30.2zM285.99 89.74L325.25 129l-205 205-14.7-29.44a10.67 10.67 0 00-9.55-5.9H78.92L286 89.75zM26.2 443.14l13.9-48.64 34.74 34.74-48.64 13.9zm123.14-35.18L98.3 422.54l-51.5-51.5L61.38 320H89.4l18.38 36.77a10.67 10.67 0 004.77 4.77l36.78 18.39v28.03zm21.33-17.54v-17.09c0-4.04-2.28-7.72-5.9-9.54l-29.43-14.7 205-205 39.26 39.26-208.93 207.07zm271.11-268.7l-47.03 46.61L301 74.6l46.59-47c8.06-8.07 22.1-8.07 30.16 0l64 64c4.03 4.03 6.25 9.38 6.25 15.08s-2.22 11.05-6.22 15.05z" /></svg>
-        <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-      <path d="M12 5v14M5 12h14"/>
-    </svg>
-      </div>
-    </div>
-  </div>
-  <div class="overlay" @click="rightSide = false; leftSide = false" :class="{ 'active': rightSide || leftSide }"></div>
-</div>
 <!-- partial -->
   <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.4/dist/alpine.js'></script>
 </body>

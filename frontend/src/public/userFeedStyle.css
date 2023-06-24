@@ -337,11 +337,26 @@ body {
   padding: 10px 20px;
   margin-left: auto;
   box-shadow: 0 0 10px #f403b8;
-
   cursor: pointer;
 }
 
 .status-share:hover {
+  box-shadow: 0 0 30px #f403b8;
+}
+
+.logout-button {
+  background-color: #f403b8;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin: auto;
+  padding: 5px 30px;
+  box-shadow: 0 0 10px #f403b8;
+  cursor: pointer;
+}
+
+.logout-button:hover {
   box-shadow: 0 0 30px #f403b8;
 }
 
@@ -384,6 +399,7 @@ body {
   text-decoration: none;
   color: #a2a4b4;
   align-items: center;
+  padding-top: 8px;
 }
 
 .album-action:hover {
@@ -409,8 +425,8 @@ body {
 }
 
 .account-profile {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin: 0 10px;
 }
@@ -419,13 +435,14 @@ body {
   display: inline-flex;
   align-items: center;
   color: #64677a;
-  font-weight: 600;
+  font-weight: 700;
+  margin-right: 10px;
 }
 
 .account {
   height: 60px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   position: sticky;
   top: 0;
@@ -477,7 +494,7 @@ body {
 @media screen and (max-width: 1210px) {
   .overlay.active {
     z-index: 3;
-    opacity: 1;
+    opacity: 0;
     visibility: visible;
     pointer-events: all;
   }
@@ -594,3 +611,18 @@ body {
   box-shadow: 0 0 30px #f403b8;
   color: #282847;
 }
+
+.logout-wrapper {
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  overflow: hidden;
+  color: #9c9cab;
+  padding: 0 20px;
+  height: 52px;
+  flex-shrink: 0;
+  border-top: 1px solid rgb(48, 46, 63);
+  position: relative;
+ }
