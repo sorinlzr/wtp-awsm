@@ -10,6 +10,13 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+    labels: [
+        {
+            label: {
+                type: String,
+            }
+        }
+    ],
     upvotes: [
         {
             user: {

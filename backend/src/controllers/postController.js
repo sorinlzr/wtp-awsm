@@ -1,14 +1,23 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
-import asyncHandler from "express-async-handler"
+import asyncHandler from "express-async-handler";
+import { getTextTopic } from "../service/textAnalysisService.js";
+
 
 const postController = {};
 
 const createPost = asyncHandler(async (req, res) => {
+     // Generate labels for the post text
+     const textToAnalyze = req.body.text;
+     const topicData = await getTextTopic(textToAnalyze);
+     const labels = topicData.topics.slice(0, 3).map((topic) => ({ label: topic.label }));
+
     // Create The Post
-    // TODO uncomment the following line after implementing session management to retrieve the user data
-    // req.body.user = req.user._id;
-    const post = await Post.create(req.body);
+    const post = await Post.create({
+        user: req.body.user,
+        text: req.body.text,
+        labels: labels,
+    });
 
     // Associate user to post
     await User.findByIdAndUpdate(
