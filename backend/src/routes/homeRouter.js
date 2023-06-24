@@ -1,0 +1,38 @@
+import express from 'express';
+import path from 'path';
+import { validateToken } from "../util/tokenValidator.js";
+
+const homeRouter = express.Router();
+const frontendSrc = '../frontend/src';
+
+homeRouter.get(
+    "/",
+    (req, res) => {
+        res.sendFile(path.join(__dirname, frontendSrc, '/index.html'));
+    }
+);
+
+homeRouter.get(
+    "/login",
+    (req, res) => {
+        res.sendFile(path.join(process.cwd(), frontendSrc, '/login.html'));
+    }
+);
+
+homeRouter.get(
+    "/register",
+    (req, res) => {
+        res.sendFile(path.join(process.cwd(), frontendSrc, '/register.html'));
+    }
+);
+
+
+homeRouter.get(
+    "/home",
+    validateToken,
+    (req, res) => {
+        res.sendFile(path.join(process.cwd(), frontendSrc, '/home.html'));
+    }
+);
+
+export default homeRouter;
