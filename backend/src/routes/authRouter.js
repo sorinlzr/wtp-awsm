@@ -6,12 +6,5 @@ import { login, logout } from '../controllers/authController.js';
 
 export const authRouter = express.Router();
 
-authRouter.post(
-    "/login",
-    login
-);
-
-authRouter.post(
-    "/logout",
-    logout
-);
+authRouter.post("/login", login);
+authRouter.get("/logout", logout);

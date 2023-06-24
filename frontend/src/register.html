@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./style.css">
-  <script type="module" src="register.js"></script>
 </head>
 <body>
 <div class="login-box">
@@ -34,14 +33,14 @@
       <label>Password</label>
     </div>
     <div class="buttons-container">
-      <a href="login.html" class="login-button">
+      <button id="loginButton" class="login-button" onclick="handleLoginButtonClick()">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        Back
-      </a>
-      <button href="#" onclick="registerUser(event)" class="register-button">
+        Back 
+      </button>
+      <button class="register-button" onclick="registerUser(event)">
         <span></span>
         <span></span>
         <span></span>
@@ -53,4 +52,5 @@
   </form>
 </div>
 </body>
+<script src="register.js"></script>
 </html>

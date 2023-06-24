@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./style.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+  </head>
 
-<body>
-  <div class="login-box">
-    <h2>Welcome to</h2>
-    <img src="images/mindShareLogo.png" alt="Logo" title="mindShareLogo" />
-    <p id="successMessage" class="success-message"></p>
-      <a href="index.html" class="login-button">
+  <body>
+    <div class="login-box">
+      <h2>Welcome to</h2>
+      <img src="images/mindShareLogo.png" alt="Logo" title="mindShareLogo" />
+      <p id="successMessage" class="success-message"></p>
+      <button class="login-button" onclick="logoutUser()">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Logout
-      </a>
-</body>
+      </button>
+    </div>
+  </body>
+  <script src="logout.js"></script>
 </html>

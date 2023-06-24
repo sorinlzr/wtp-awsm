@@ -27,8 +27,10 @@ export const login = asyncHandler(async (req, res, next) => {
         // Check password
         const auth = await bcrypt.compare(password, user.password)
         if (!auth) {
-            return res.json({ message: 'Incorrect password or email' })
+            return res.status(401).json({ message: 'Incorrect password or email' })
         }
+
+        console.log("Matching password");
 
         // User matched
         // Create JWT Payload
@@ -39,6 +41,8 @@ export const login = asyncHandler(async (req, res, next) => {
 
         // Sign token
         const token = createSecretToken(payload);
+
+        console.log("created token");
 
         // set token and redirect to home page
         res.
@@ -61,13 +65,10 @@ export const logout = asyncHandler(async (req, res, next) => {
     try {
       // Clear the token cookie
       res.clearCookie('token');
-  
-      // Perform any additional logout actions if necessary
-  
+
       res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
       console.log("Error during logout");
       console.error(error);
     }
   });
-  

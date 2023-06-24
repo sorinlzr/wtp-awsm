@@ -181,6 +181,15 @@ body {
   box-shadow: 0 0 5px #f403b8, 0 0 25px #f403b8;
 }
 
+.logout-link {
+  display: inline-block;
+  position: absolute;
+  top: 280px;
+  right: 220px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .error-message {
   display: none; /* Hide the error message by default */
   text-align: center;

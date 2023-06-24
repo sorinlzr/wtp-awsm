@@ -1,10 +1,12 @@
-// Add an event listener to the logout button or link
-document.getElementById('logoutButton').addEventListener('click', logoutUser);
+// Add an event listener to the logout button or link.
+// document.getElementById('logoutForm').addEventListener('click', logoutUser);
 
 function logoutUser() {
-  // Send a GET request to the logout endpoint
+  // Send a GET request to the logout endpoint.
   fetch('/api/auth/logout', {
     method: 'GET',
+    withCredentials: true,
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -12,9 +14,9 @@ function logoutUser() {
     .then(response => response.json())
     .then(data => {
       console.log('User logged out successfully:', data);
+      sessionStorage.clear()
       sessionStorage.setItem('logoutSuccessMessage', true);
-      window.location.href = '/login.html?success=logout_success';
-      // Handle the success response here, e.g., show a success message to the user
+      window.location.href = '/index.html';
     })
     .catch(error => {
       console.error('Error logging out user:', error);
