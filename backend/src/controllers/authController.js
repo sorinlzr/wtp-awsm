@@ -6,8 +6,6 @@ import asyncHandler from "express-async-handler"
 import User from "../models/User.js";
 import { createSecretToken } from '../util/secretToken.js';
 
-import jwt from 'jsonwebtoken';
-
 export const login = asyncHandler(async (req, res, next) => {
     try {
         const username = req.body.username;
@@ -29,7 +27,7 @@ export const login = asyncHandler(async (req, res, next) => {
         // Check password
         const auth = await bcrypt.compare(password, user.password)
         if (!auth) {
-            return res.json({ message: 'Incorrect password or email' })
+            return res.status(401).json({ message: 'Incorrect password or email' })
         }
 
         console.log("Matching password");
@@ -74,26 +72,3 @@ export const logout = asyncHandler(async (req, res, next) => {
       console.error(error);
     }
   });
-
-export const isAuth = (req, res, next) => {
-    // Create JWT payload
-    const payload = {
-        id: req.user.id,
-        name: req.user.name
-    };
-
-    // Sign the token with an expired expiration time (0 seconds)
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: 0 // Set the expiration time to 0 to indicate an expired token
-    });
-
-    // Set the token as a cookie in the response
-    res.cookie('token', token, {
-        httpOnly: true,
-    });
-
-    next();
-};
-
-
-
