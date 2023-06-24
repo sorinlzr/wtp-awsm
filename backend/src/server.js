@@ -8,10 +8,10 @@ import postRouter from './routes/postRoute.js';
 import userRouter from './routes/userRoute.js';
 import { authRouter } from './routes/authRouter.js';
 import translationRouter from './routes/translationRouter.js';
+import textAnalysisRouter from './routes/textAnalysisRouter.js';
 import { connectToDatabase } from './config/dbconnection.js';
 import passport from './config/passport.js';
 import setupSwagger from './config/swagger.js';
-import jwt from 'jsonwebtoken';
 
 
 dotenv.config({ path: '../.env' })
@@ -33,6 +33,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/translate", translationRouter);
+app.use("/api/analyseText", textAnalysisRouter);
 
 setupSwagger(app);
 

@@ -37,6 +37,7 @@ MONGO_DB_COLLECTION         - the initial collection inside the database specifi
 MONGOEXPRESS_LOGIN          - the user for the UI interface login
 MONGOEXPRESS_PASSWORD       - the password for the UI interface login
 MONGOEXPRESS_PORT           - the port where to access the web UI interface
+TEXTRAZOR_API_KEY           - the API key for the TextRazor API used to analyse text and label it in a category
 ```
 From the `repository root directory` run 
 ```
@@ -66,3 +67,6 @@ When the application starts, it will automatically create a database for the app
 ### Swagger API
 
 You can access the Swagger API at the `/api-docs` endpoint
+<br>
+### TextRazor API
+In order to obtain an API key, you need to register for a free account on the [TextRazor](https://www.textrazor.com/) website
