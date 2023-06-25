@@ -11,14 +11,23 @@ const createPost = asyncHandler(async (req, res) => {
      // Generate labels for the post text
      const textToAnalyze = req.body.text;
      const topicData = await getTextTopic(textToAnalyze);
-     const labels = topicData.topics.slice(0, 3).map((topic) => ({ label: topic.label }));
+     let labels = {};
+     let post = {};
 
-    // Create The Post
-    const post = await Post.create({
-        user: req.body.user,
-        text: req.body.text,
-        labels: labels,
-    });
+     if (topicData.topics && topicData.topics.length >= 3) {
+        labels = topicData.topics.slice(0, 3).map((topic) => ({ label: topic.label }));
+
+        post = await Post.create({
+            user: req.body.user,
+            text: req.body.text,
+            labels: labels,
+        });
+     } else {
+        post = await Post.create({
+            user: req.body.user,
+            text: req.body.text
+        });
+     }
 
     // Associate user to post
     await User.findByIdAndUpdate(

@@ -43,6 +43,15 @@ homeRouter.get(
     }
 );
 
+
+homeRouter.get(
+    "/accountSettings",
+    validateToken,
+    (req, res) => {
+      res.sendFile(path.join(process.cwd(), frontendSrc, '/accountSettings.html'));
+    }
+  );
+  
 //should be the very last route at all times
 homeRouter.get("*", (req, res) => {
     res.status(404).sendFile(path.join(process.cwd(), frontendSrc, '/error.html'));
