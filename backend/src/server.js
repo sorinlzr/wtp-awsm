@@ -28,14 +28,14 @@ app.use(express.static(path.join(process.cwd(), "../frontend/src/public")));
 // Passport middleware
 app.use(passport.initialize());
 
-app.use("/", homeRouter);
+setupSwagger(app);
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 app.use("/api/translate", translationRouter);
 app.use("/api/analyseText", textAnalysisRouter);
+app.use("/", homeRouter);
 
-setupSwagger(app);
 
 app.listen(port, () => {
     console.log(`Now listening on port ${port}`);

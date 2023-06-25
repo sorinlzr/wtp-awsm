@@ -2,6 +2,7 @@ import Post from "../models/Post.js";
 import User from "../models/User.js";
 import asyncHandler from "express-async-handler";
 import { getTextTopic } from "../service/textAnalysisService.js";
+import { getOne, getAll, deleteOne, updateOne } from "./handlersFactory.js"
 
 
 const postController = {};
@@ -31,17 +32,16 @@ const createPost = asyncHandler(async (req, res) => {
     res.status(201).send({ data: post });
 });
 
-const allPosts = asyncHandler(async (req, res) => {
-    const post = await Post.find().populate("author");
+const allPosts = getAll(Post);
+const getOnePost = getOne(Post);
+const deleteOnePost = deleteOne(Post);
+const updateOnePost = updateOne(Post);
 
-    const posts = post.filter((item) => {
-        return !item.author.blocked.includes(req.user._id);
-    });
-
-    res.status(200).json({ size: posts.length, data: posts });
-});
 
 postController.createPost = createPost;
 postController.allPosts = allPosts;
+postController.getOnePost = getOnePost;
+postController.deleteOnePost = deleteOnePost;
+postController.updateOnePost = updateOnePost;
 
 export default postController;
