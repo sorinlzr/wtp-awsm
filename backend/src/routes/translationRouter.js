@@ -1,3 +1,10 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Translation
+ *   description: API endpoints for translation
+ */
+
 import express from 'express';
 import translationService from '../service/translationService.js';
 
@@ -8,6 +15,7 @@ const translationRouter = express.Router();
  * /api/translate:
  *   get:
  *     summary: Get the list of supported languages for translation.
+ *     tags: [Translation]
  *     responses:
  *       '200':
  *         description: Successful retrieval of language list
@@ -45,6 +53,7 @@ translationRouter.get('/', async (req, res) => {
  * /api/translate:
  *   post:
  *     summary: Translate text from a source language to a target language.
+ *     tags: [Translation]
  *     requestBody:
  *       required: true
  *       content:
@@ -97,6 +106,7 @@ translationRouter.post('/', async (req, res) => {
  * /api/translate/detect:
  *   post:
  *     summary: Detect the language of a given text.
+ *     tags: [Translation]
  *     requestBody:
  *       required: true
  *       content:
@@ -143,6 +153,7 @@ translationRouter.post('/detect', async (req, res) => {
  * /api/translate/auto:
  *   post:
  *     summary: Auto translate text from the detected language to English.
+ *     tags: [Translation]
  *     requestBody:
  *       required: true
  *       content:
@@ -183,6 +194,5 @@ translationRouter.post('/auto', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 export default translationRouter;

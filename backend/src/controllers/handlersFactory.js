@@ -15,7 +15,6 @@ export const updateOne = (Model, name = "document") =>
       return next(new apiError(`No ${name} for this id ${id}`, 404));
     }
 
-    document.save();
     res.status(200).json({ data: document });
   });
 
@@ -27,7 +26,6 @@ export const deleteOne = (Model, name = "document") =>
       return next(new apiError(`No ${name} for this id ${req.params.id}`, 404));
     }
 
-    document.remove();
     res.status(204).send();
   });
 
