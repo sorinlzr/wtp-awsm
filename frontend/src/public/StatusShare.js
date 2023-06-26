@@ -5,7 +5,6 @@ function shareStatus(event) {
 
   const text = document.getElementById('post-text').value;
   const userId = sessionStorage.getItem('userId');
-  console.log('userId:', userId);
 
   const data = {
     text: text,
@@ -34,18 +33,18 @@ function fetchUsers() {
     .then(response => response.json())
     .then(data => {
       users = data.data;
-      fetchAndRenderPosts();
+      fetchAndRenderPosts(users);
     })
     .catch(error => {
       console.error('Error fetching users:', error);
     });
 }
 
-function fetchAndRenderPosts() {
+function fetchAndRenderPosts(users) {
   fetch('/api/posts')
     .then(response => response.json())
     .then(data => {
-      renderPosts(data.data);
+      renderPosts(data.data, users);
     })
     .catch(error => {
       console.error('Error fetching posts:', error);
@@ -62,7 +61,7 @@ function getCurrentUser() {
     });
 }
 
-function renderPosts(posts) {
+function renderPosts(posts, users) {
   const container = document.getElementById('posts-container');
 
   // Clear the existing posts
@@ -74,6 +73,7 @@ function renderPosts(posts) {
 
     posts.forEach(post => {
       const postElement = document.createElement('div');
+
       postElement.className = 'album box';
 
       // Find the user object based on the user ID in the post
@@ -82,22 +82,23 @@ function renderPosts(posts) {
       const userLanguage = currentUser.language;
       const textLanguage = post.textLanguage;
 
-      let translationText = '';
-      if (userLanguage !== textLanguage) {
-        const languageMap = {
-          en: 'English',
-          es: 'Español',
-          de: 'Deutsch',
-          it: 'Italiano',
-          fr: 'Francais'
-        };
-        const translatedLanguage = languageMap[userLanguage] || '';
-        translationText = `Translate to ${translatedLanguage}`;
-      }
+      if (postingUser) {
+        let translationText = '';
+        if (userLanguage !== textLanguage) {
+          const languageMap = {
+            en: 'English',
+            es: 'Español',
+            de: 'Deutsch',
+            it: 'Italiano',
+            fr: 'Francais'
+          };
+          const translatedLanguage = languageMap[userLanguage] || '';
+          translationText = `Translate to ${translatedLanguage}`;
+        }
 
-      postElement.innerHTML = `
+        postElement.innerHTML = `
       <div class="status-main">
-        <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" class="status-img" />
+        <img src="${postingUser.avatar}" class="status-img alt=userAvatar" />
         <div class="album-detail">
           <div class="album-title"><strong>${postingUser.username}</strong> create new <span>post</span></div>
           <div class="album-date">${post.date}</div>
@@ -136,14 +137,15 @@ function renderPosts(posts) {
       </div>
     `;
 
-      container.appendChild(postElement);
+        container.appendChild(postElement);
 
-      // Attach onClick event to translation link
-      const translationAnchor = document.getElementById(`translate-${post._id}`);
-      translationAnchor.addEventListener('click', translatePost);
+        // Attach onClick event to translation link
+        const translationAnchor = document.getElementById(`translate-${post._id}`);
+        translationAnchor.addEventListener('click', translatePost);
+      }
     });
   }).catch(error => {
-    console.error('Error fetching current user:', error);
+    console.error('Error rendering for current user:', error);
   });
 }
 
