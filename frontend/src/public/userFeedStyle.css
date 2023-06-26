@@ -344,6 +344,24 @@ body {
   box-shadow: 0 0 30px #f403b8;
 }
 
+.translate-button {
+  background-color: transparent;
+  border: none;
+  margin-right: 5px;
+  padding: 6px 12px;
+  color: #ccc8db;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.translate-button:hover {
+  background-color: #272a3a;
+  box-shadow: 0 0 30px #f403b8;
+  color: #ccc8db;
+}
+
 .logout-button {
   background-color: #f403b8;
   border: none;
