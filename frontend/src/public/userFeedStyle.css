@@ -345,21 +345,18 @@ body {
 }
 
 .translate-button {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
   background-color: transparent;
   border: none;
-  margin-right: 5px;
-  padding: 6px 12px;
   color: #ccc8db;
   border-radius: 4px;
-  font-size: 14px;
-  margin-left: auto;
+  font-size: 14.5px;
   cursor: pointer;
 }
 
 .translate-button:hover {
-  background-color: #272a3a;
-  box-shadow: 0 0 30px #f403b8;
-  color: #ccc8db;
+  color: #ff32e4;
 }
 
 .logout-button {
@@ -387,7 +384,6 @@ body {
   display: flex;
 }
 
-
 .album-detail {
   width: calc(100% - 110px);
 }
@@ -407,6 +403,18 @@ body {
 .album-content {
   padding: 0 20px 20px;
   font-size: 14px;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-buttons {
+  display: flex;
+}
+
+.right-buttons {
+  display: flex;
 }
 
 .album-actions {
