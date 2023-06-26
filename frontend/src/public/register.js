@@ -21,6 +21,7 @@ function registerUser(event) {
     const email = document.getElementById('email').value;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const language = document.getElementById('language').value;
 
     // Create user object
     const user = {
@@ -28,7 +29,8 @@ function registerUser(event) {
         lastname,
         email,
         username,
-        password
+        password,
+        language
     };
 
     console.log(user);

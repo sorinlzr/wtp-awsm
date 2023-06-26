@@ -10,6 +10,9 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+    textLanguage: {
+        type: String,
+    },
     labels: [
         {
             label: {

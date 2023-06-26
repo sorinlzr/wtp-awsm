@@ -4,14 +4,12 @@ function shareStatus(event) {
   event.preventDefault();
 
   const text = document.getElementById('post-text').value;
-
   const userId = sessionStorage.getItem('userId');
   console.log('userId:', userId);
 
   const data = {
     text: text,
     user: userId,
-    nonexisting: 'plm'
   };
 
   fetch('/api/posts/', {
@@ -54,6 +52,16 @@ function fetchAndRenderPosts() {
     });
 }
 
+function getCurrentUser() {
+  const userId = sessionStorage.getItem('userId');
+  return fetch(`/api/users/${userId}`)
+    .then(response => response.json())
+    .then(data => data.data)
+    .catch(error => {
+      console.error('Error fetching current user:', error);
+    });
+}
+
 function renderPosts(posts) {
   const container = document.getElementById('posts-container');
 
@@ -62,22 +70,42 @@ function renderPosts(posts) {
 
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  posts.forEach(post => {
-    const postElement = document.createElement('div');
-    postElement.className = 'album box';
+  getCurrentUser().then(currentUser => {
 
-    // Find the user object based on the user ID in the post
-    const user = users.find(u => u._id === post.user);
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.className = 'album box';
 
-    postElement.innerHTML = `
+      // Find the user object based on the user ID in the post
+      const postingUser = users.find(u => u._id === post.user);
+
+      const userLanguage = currentUser.language;
+      const textLanguage = post.textLanguage;
+
+      let translationText = '';
+      if (userLanguage !== textLanguage) {
+        const languageMap = {
+          en: 'English',
+          es: 'Español',
+          de: 'Deutsch',
+          it: 'Italiano',
+          fr: 'Francais'
+        };
+        const translatedLanguage = languageMap[userLanguage] || '';
+        translationText = `Translate to ${translatedLanguage}`;
+      }
+
+      postElement.innerHTML = `
       <div class="status-main">
         <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" class="status-img" />
         <div class="album-detail">
-          <div class="album-title"><strong>${user.username}</strong> create new <span>post</span></div>
+          <div class="album-title"><strong>${postingUser.username}</strong> create new <span>post</span></div>
           <div class="album-date">${post.date}</div>
         </div>
       </div>
-      <div class="album-content">${post.text}</div>
+      <div class="album-content">
+        ${post.text}
+      </div>
       <div class="album-actions">
         ${post.labels.map(label => `<button class="hashtag-label">${label.label}</button>`).join('')}
       </div>
@@ -102,14 +130,58 @@ function renderPosts(posts) {
           </svg>
           13
         </a>
-        <a href="#" class="album-action">
-          Translate to German.      
-        </a>
+        <button class="translate-button" id="translate-${post._id}" data-text="${post.text}" data-source="${textLanguage}" data-target="${userLanguage}">
+          ${translationText}    
+        </button>
       </div>
     `;
 
-    container.appendChild(postElement);
+      container.appendChild(postElement);
+
+      // Attach onClick event to translation link
+      const translationAnchor = document.getElementById(`translate-${post._id}`);
+      translationAnchor.addEventListener('click', translatePost);
+    });
+  }).catch(error => {
+    console.error('Error fetching current user:', error);
   });
+}
+
+function translatePost(event) {
+  event.preventDefault();
+
+  const translationAnchor = event.target;
+  const text = translationAnchor.getAttribute('data-text');
+  const sourceLanguage = translationAnchor.getAttribute('data-source');
+  const targetLanguage = translationAnchor.getAttribute('data-target');
+
+  const data = {
+    text: text,
+    sourceLanguage: sourceLanguage,
+    targetLanguage: targetLanguage
+  };
+
+  fetch('/api/translate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      const translatedText = data.translatedText;
+
+      // Update the post content with the translated text
+      const albumContent = translationAnchor.closest('.album').querySelector('.album-content');
+      albumContent.textContent = translatedText;
+
+      // Hide the translation link
+      translationAnchor.style.display = 'none';
+    })
+    .catch(error => {
+      console.error('Error translating post:', error);
+    });
 }
 
 // Call fetchUsers() when the page loads
