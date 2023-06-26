@@ -1,4 +1,5 @@
 import { mongoose } from 'mongoose';
+import { faker } from '@faker-js/faker';
 import bcrypt from 'bcrypt';
 const Schema = mongoose.Schema;
 
@@ -35,6 +36,10 @@ const UserSchema = new Schema(
     },
 
     language: {
+      type: String
+    },
+
+    avatar: {
       type: String
     },
     
@@ -93,6 +98,10 @@ UserSchema.virtual("postCounts").get(function () {
 UserSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
+  if (!this.avatar) {
+    const avatar = faker.image.urlLoremFlickr({ category: 'people' });
+    this.avatar = avatar;
+  }
   next();
 });
 

@@ -36,27 +36,46 @@ const translateText = async (text, sourceLanguage, targetLanguage) => {
 
 const detectLanguage = async (text) => {
     try {
-        const response = await axios.post(`http://${process.env.LIBRETRANSLATE_HOST}:${process.env.LIBRETRANSLATE_PORT}/detect`, { q: text });
-        const detectedLanguage = response.data[0].language;
+        const response = await fetch(`http://${process.env.LIBRETRANSLATE_HOST}:${process.env.LIBRETRANSLATE_PORT}/detect`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ q: text }),
+        });
 
-        return detectedLanguage;
+        if (response.ok) {
+            const data = await response.json();
+            let detectedLanguage = '';
+            if (data[0].language) {
+                detectedLanguage = data[0].language;
+                console.log(`detected language: ${detectedLanguage}`);
+                return detectedLanguage;
+            } else {
+                return 'en';
+            }
+        } else {
+            throw new Error('An error occurred while detecting the language');
+        }
     } catch (error) {
-        // throw new Error('An error occurred while detecting the language');
+        console.error('An error occurred while detecting the language:', error);
+        throw new Error('An error occurred while detecting the language');
     }
 };
+
 
 // Function to automatically detect language and translate text to the default user language
 // Hardcoded to English for now
 const autoTranslate = async (text) => {
     try {
-      const detectedLanguage = await detectLanguage(text);
-      const translatedText = await translateText(text, detectedLanguage, 'en');
-      
-      return translatedText;
+        const detectedLanguage = await detectLanguage(text);
+        const translatedText = await translateText(text, detectedLanguage, 'en');
+
+        return translatedText;
     } catch (error) {
-      throw new Error('An error occurred while auto-translating the text');
+        throw new Error('An error occurred while auto-translating the text');
     }
-  };
+};
 
 translationService.translateText = translateText;
 translationService.getLanguages = getLanguages;

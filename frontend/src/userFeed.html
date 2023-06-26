@@ -16,13 +16,7 @@
 </svg>
     </div>
     <div class="logo">MINDSHARE</div>
-    <div class="account">
-      <span class="account-user">
-        <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="account-profile" alt="">
-      </span>
-      <span class="account-user">
-        username 
-      </span>
+    <div class="account" id="username-img">
     </div>
     <div class="side-wrapper">
       <div class="side-title">MENU</div>
@@ -95,7 +89,8 @@
               <a class="status-menu-item active" href="#">Status</a>
             </div>
             <div class="status-main">
-              <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" class="status-img">
+              <div id="userAvatar">
+              </div>
               <textarea class="status-textarea" placeholder="Write what's on your mind and tag circles." id="post-text"></textarea> <!--TODO -->
             </div>
             <div class="status-actions">
@@ -109,52 +104,6 @@
             </div>
           </div>
           <div id="posts-container"></div>
-
-          <!-- Beginning of post -->
-          <div class="album box" >
-            <div class="status-main">
-              <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" class="status-img" />
-              <div class="album-detail">
-                <div class="album-title"><strong>FlamingoTingz</strong> create new <span>post</span></div>
-                <div class="album-date">6 hours ago</div>
-              </div>
-            </div>
-            <div class="album-content">I Had Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-            </div>
-
-            <div class="album-actions">
-              <button class="hashtag-label">#WildLife</button>
-              <button class="hashtag-label">#Technik</button>
-            </div>
-            
-            <div class="album-actions">
-              <a href="#" class="album-action">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-                </svg>
-                87
-              </a>
-              <a href="#" class="album-action">
-                <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1" viewBox="0 0 24 24">
-                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                </svg>
-                20
-              </a>
-              <a href="#" class="album-action">
-                <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1" viewBox="0 0 24 24">
-                  <path d="M17 1l4 4-4 4" />
-                  <path d="M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4" />
-                  <path d="M21 13v2a4 4 0 01-4 4H3" />
-                </svg>
-                13
-              </a>
-
-              <button href="#" class="translate-button">
-                Translate to German.      
-              </button>
-            </div>
-          </div>
-          <!-- ending of post -->
         </div>
       </div>
     </div>
@@ -163,6 +112,7 @@
 <!-- partial -->
   <script src="logout.js"></script>
   <script src="accountSettings.js"></script>
+  <script src="userFeed.js"></script>
   <script src="StatusShare.js"></script>
   <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.4/dist/alpine.js'></script>
   
