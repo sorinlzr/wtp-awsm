@@ -34,6 +34,10 @@ const UserSchema = new Schema(
       required: [true, "Password is Required"],
     },
 
+    language: {
+      type: String
+    },
+    
     isBlocked: {
       type: Boolean,
       default: false,
