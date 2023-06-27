@@ -1,5 +1,5 @@
 import { mongoose } from 'mongoose';
-import { faker } from '@faker-js/faker';
+import axios from 'axios';
 import bcrypt from 'bcrypt';
 const Schema = mongoose.Schema;
 
@@ -99,11 +99,23 @@ UserSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   if (!this.avatar) {
-    const avatar = faker.image.urlLoremFlickr({ category: 'people' });
-    this.avatar = avatar;
+    const lockNumber = () => Math.floor(Math.random() * 99999) + 1;
+    const avatarUrl = await generateRandomUserAvatar(lockNumber);
+    this.avatar = avatarUrl;
   }
   next();
 });
+
+async function generateRandomUserAvatar(lockNumber) {
+  try {
+    const url = `https://loremflickr.com/640/480/people?lock=${lockNumber}`;
+    const response = await axios.get(url);
+    const responseUrl = response.request.res.responseUrl;
+    return responseUrl;
+  } catch (error) {
+    throw new Error(`Network Error: ${error.message}`);
+  }
+}
 
 // @desc Create Model
 const User = mongoose.model("User", UserSchema);
