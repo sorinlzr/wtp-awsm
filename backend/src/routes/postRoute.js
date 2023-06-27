@@ -166,7 +166,7 @@ postRouter.delete(
 /**
  * @swagger
  * /api/posts/{id}:
- *   patch:
+ *   put:
  *     summary: Update a post by ID
  *     tags: [Posts]
  *     parameters:
@@ -190,7 +190,7 @@ postRouter.delete(
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-postRouter.patch(
+postRouter.put(
     "/:id",
     postController.updateOnePost
 );

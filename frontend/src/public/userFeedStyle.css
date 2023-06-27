@@ -417,6 +417,13 @@ body {
   display: flex;
 }
 
+
+.right-buttons-edit {
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+}
+
 .album-actions {
   padding: 0 20px 20px;
 }

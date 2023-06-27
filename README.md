@@ -4,7 +4,8 @@
 
 ### Install dependencies
 
-Make sure that you have [node and npm](https://nodejs.org/en/download) installed. If you do, then navigate to the `/backend` folder and run 
+Make sure that you have [node v18.14.2 and npm 9.5.0](https://nodejs.org/en/download) installed. 
+If you do, then navigate to the `/backend` folder and run 
 ```
 npm install
 ```
