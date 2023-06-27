@@ -296,8 +296,8 @@ body {
   background-color: transparent;
   border: none;
   resize: none;
-  margin-top: 15px;
   color: #fff;
+  min-height: 55px;
 }
 .status-textarea::placeholder {
   color: #5c5d71;
@@ -623,7 +623,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-
 
 .hashtag-label {
   display: inline-block;
