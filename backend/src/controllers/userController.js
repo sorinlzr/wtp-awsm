@@ -12,6 +12,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(
     req.user._id,
     {
+      // TODO add all fields
       firstname: req.body.firstname,
       lastname: req.body.firstname,
       email: req.body.email,
