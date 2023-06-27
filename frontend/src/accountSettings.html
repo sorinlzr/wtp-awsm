@@ -1,144 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>MINDSHARE</title>
-<link rel="stylesheet" href="./userFeedStyle.css">
-
-<style>
-  /* Add custom styles for the input fields */
-  .user-box input[type="text"] {
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid white;
-      padding: 5px;
-      color: white;
-    }
-    .user-box label {
-      color: white;
-    }
-</style>
+  <link rel="stylesheet" href="./userFeedStyle.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-<!--https://icons.getbootstrap.com/ for icons-->
-<div class="container" x-data="{ rightSide: false, leftSide: false }">
-  <div class="left-side" :class="{'active' : leftSide}">
-    <div class="left-side-button" @click="leftSide = !leftSide">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-  <path d="M19 12H5M12 19l-7-7 7-7"/>
-</svg>
-    </div>
-    <div class="logo">MINDSHARE</div>
-    <div class="account">
-      <span class="account-user">
-        <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="account-profile" alt="">
-      </span>
-      <span class="account-user">
-        username 
-      </span>
-    </div>
-    <div class="side-wrapper">
-      <div class="side-title">MENU</div>
-      <div class="side-menu">
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-            <path d="M9 22V12h6v10" />
-          </svg>
-          Home
-        </a>
-        <a href="#">
-          <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-          </svg>
-          Latest News
-        </a>
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-            <circle cx="12" cy="10" r="3" /></svg>
-          Explore
-        </a>
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-          </svg>
-          Files
-        </a>
-        <a href="#" >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-          </svg>
-          Account Settings
-        </a>
+  <!--https://icons.getbootstrap.com/ for icons-->
+  <div class="container" x-data="{ rightSide: false, leftSide: false }">
+    <div class="left-side" :class="{'active' : leftSide}">
+      <div class="left-side-button" @click="leftSide = !leftSide">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <path d="M19 12H5M12 19l-7-7 7-7"/>
+  </svg>
       </div>
-    </div>
-    <div class="side-wrapper">
-      <div class="side-title">YOUR CIRCLES </div>
-      <div class="side-menu">
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 472.11 472.11">
-            <path d="M364.07 216.11a63.94 63.94 0 00-28.26-53.1 55.95 55.95 0 00-43.74-90.9c-.8 0-1.6.1-2.4.12a56 56 0 10-107.2 0c-.8 0-1.6-.12-2.4-.12a55.95 55.95 0 00-43.75 90.9 64 64 0 000 106.2 55.95 55.95 0 0043.75 90.9h112a55.95 55.95 0 0043.74-90.9 63.94 63.94 0 0028.26-53.1z" fill="#88b337" />
-            <path d="M297.72 178.46a8 8 0 00-11.31 0l-42.34 42.34V104.11a8 8 0 00-16 0v56.7l-36.35-36.35a8 8 0 00-11.31 11.3l47.66 47.67V292.8l-34.35-34.34a8 8 0 00-11.31 11.3l45.66 45.67V464.1a8 8 0 0016 0V242.87c.6-.3 1.15-.66 1.65-1.1l52-52a8 8 0 000-11.31z" fill="#6a9923" />
-            <path d="M372.07 472.11h-272a8 8 0 010-16h272a8 8 0 010 16z" fill="#595959" /></svg>
-          Foresto
-        </a>
+      <div class="logo">MINDSHARE</div>
+      <div class="account" id="username-img">
       </div>
+      <div class="side-wrapper">
+        <div class="side-title">MENU</div>
+        <div class="side-menu">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+            Home
+          </a>
+          <a href="#" onclick="switchToAccountSettings()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+            </svg>
+            Account Settings
+          </a>
+        </div>
+      </div>
+  
+      <a href="" class="logout-wrapper">
+        <button class="logout-button"  onclick="logoutUser()">
+          logout
+        </button>
+      </a>
     </div>
-
-    <a href="" class="logout-wrapper">
-      <button class="logout-button">
-        logout
-      </button>
-    </a>
-  </div>
-  <div class="main">
-    <div class="search-bar">
-      <input type="text" placeholder="Search" />
     </div>
-    <div class="main-container">
-      <div class="timeline">
-        <div class="timeline-right">
-          <!-- Beginning of post -->
-          <div class="album box">
-            <div class="status-main">
-              <div class="album-detail">
-                <div class="album-title"><strong>Edit your user info</strong></div>
-                <div class="album-date">something</div>
-              </div>
+    <div class="main">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+      </div>
+      <div class="main-container">
+        <div class="login-box" id="user-details">
+          <h2>User Account Settings</h2>
+          <img src="${user.avatar}" alt="User Avatar" id="user-avatar" />
+          <form id="user-details" autocomplete="false">
+            <div class="user-box">
+              <input type="text" name="" required="" id="username">
+              <label>Username</label>
             </div>
-            <div class="album-content">I Had Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-            
-              <form>
-                <div class="user-box">
-                  <input type="text" name="">
-                  <label>Username</label>
-                </div>
-                <div class="user-box">
-                  <input type="text" name="">
-                  <label>something else</label>
-                </div>
-                <a href="#" class="status-share">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  Submit
-                </a>
-              </form>
 
+            <div class="user-box">
+              <input type="Firstname" name="" required="" id="firstname">
+              <label>Firstname</label>
             </div>
-          </div>
-          <!-- ending of post -->
+
+            <div class="user-box">
+              <input type="Lastname" name="" required="" id="lastname">
+              <label>Lastname</label>
+            </div>
+
+            <div class="user-box">
+              <input type="E-mail" name="" required="" id="email">
+              <label>E-mail</label>
+            </div>
+            <div class="user-box">
+              <input type="password" name="" required="" id="password" autocomplete="new-password">
+              <label>Password</label>
+            </div>
+            <div class="user-box dropdown">
+              <label>Language</label>
+              <select id="language" required title="language">
+                <option value="en" selected>English</option>
+                <option value="es">Español</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="fr">Francais</option>
+              </select>
+            </div>
+
+            <div class="buttons-container">
+              <button id="loginButton" class="login-button" onclick="handleBackButtonClick()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Back
+              </button>
+              <button class="register-button" onclick="handleSaveButtonClick()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Save Changes
+              </button>
+            </div>
+            <p id="errorMessage" class="error-message"></p> <!-- Added error message element -->
+          </form>
         </div>
       </div>
     </div>
 
-<!-- partial -->
-  <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.4/dist/alpine.js'></script>
+    <!-- partial -->
+    <script src="logout.js"></script>
+    <script src="accountSettings.js"></script>
+    <script src="userFeed.js"></script>
+    <script src="StatusShare.js"></script>
+    <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.4/dist/alpine.js'></script>
 </body>
+
 </html>
