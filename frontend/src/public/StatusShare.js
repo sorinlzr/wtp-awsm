@@ -237,18 +237,28 @@ function editPostText(postId) {
   // Get the current text content
   const currentText = postTextContainer.textContent.trim();
 
+  const editPostElement = document.createElement('div');
+  editPostElement.className = 'status-main';
+
+  const editPostButtons = document.createElement('div');
+  editPostButtons.className = 'right-buttons-edit';
+
   // Create a textarea element
   const textarea = document.createElement('textarea');
   textarea.value = currentText;
-  textarea.className = 'edit-textarea';
+  textarea.id = 'edit-post-textarea';
+  textarea.className = 'status-textarea';
+  textarea.addEventListener('input', () =>{
+    textarea.style.height = "auto";
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  });
 
   // Create the Save and Cancel buttons
-  const saveButton = document.createElement('button');
+  const saveButton = document.createElement('a');
   saveButton.textContent = 'Save';
-  saveButton.className = 'edit-button';
+  saveButton.className = 'album-action';
   saveButton.addEventListener('click', () => {
     const editedPostText = textarea.value.trim();
-    // const postId = getPostIdFromElement(postTextContainer);
 
     // Call the /api/posts/:id endpoint with a PUT request
     fetch(`/api/posts/${postId}`, {
@@ -266,9 +276,9 @@ function editPostText(postId) {
           postTextContainer.textContent = editedPostText;
 
           // Remove the textarea and buttons
-          postTextContainer.removeChild(textarea);
-          postTextContainer.removeChild(saveButton);
-          postTextContainer.removeChild(cancelButton);
+          editPostElement.removeChild(textarea);
+          editPostButtons.removeChild(saveButton);
+          editPostButtons.removeChild(cancelButton);
         } else {
           console.error('Error updating post text:', response.statusText);
         }
@@ -278,9 +288,9 @@ function editPostText(postId) {
       });
   });
 
-  const cancelButton = document.createElement('button');
+  const cancelButton = document.createElement('a');
   cancelButton.textContent = 'Cancel';
-  cancelButton.className = 'edit-button';
+  cancelButton.className = 'album-action';
   cancelButton.addEventListener('click', () => {
     // Restore the original content
     postTextContainer.textContent = currentText;
@@ -288,23 +298,15 @@ function editPostText(postId) {
 
   // Clear the postTextContainer and add the textarea and buttons
   postTextContainer.innerHTML = '';
-  postTextContainer.appendChild(textarea);
-  postTextContainer.appendChild(saveButton);
-  postTextContainer.appendChild(cancelButton);
+  postTextContainer.appendChild(editPostElement);
+  postTextContainer.appendChild(editPostButtons);
+  editPostElement.appendChild(textarea);
+  editPostButtons.appendChild(saveButton);
+  editPostButtons.appendChild(cancelButton);
 }
 
-function getPostIdFromElement(element) {
-  const postIdAttribute = 'data-post-id';
-
-  // Traverse up the DOM to find the nearest ancestor with the data-post-id attribute
-  while (element && !element.hasAttribute(postIdAttribute)) {
-    element = element.parentElement;
-  }
-
-  if (element) {
-    return element.getAttribute(postIdAttribute);
-  }
-
-  return null;
+function adjustTextareaHeight() {
+  var textarea = document.getElementById('post-text');
+  textarea.style.height = "auto"; // Reset the height to auto to calculate the actual content height
+  textarea.style.height = `${textarea.scrollHeight}px`; // Set the height to the calculated scroll height
 }
-
